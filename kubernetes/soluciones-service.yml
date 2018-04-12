@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: soluciones
+    run: soluciones
+  name: soluciones
+  namespace: default
+  type: LoadBalancer
+spec:
+  clusterIp: 10.63.248.246
+  externalTrafficPolicy: Cluster
+  ports:
+  - name: primary
+    port: 80
+    protocol: TCP
+    targetPort: 8000
+  selector:
+    app: soluciones
+  sessionAffinity: None
+  type: LoadBalancer

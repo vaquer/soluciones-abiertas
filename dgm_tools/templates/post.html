@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load html %}
+
+{% block title %}Datos Abiertos de México - {{post.title}}{% endblock %}
+
+{% block breadcrumbs %}
+    <ul class="breadcrumb">
+        <li>
+            <a ui-sref="landing" href="https://datos.gob.mx/">
+                <i class="glyphicon glyphicon-home"></i>
+            </a>
+        </li>
+        <li>
+            <a href="/soluciones-abiertas/">Catálogo Comunitario</a>
+        </li>
+        <li>
+            <a>{{post.title|truncatechars:"60"}}</a>
+        </li>
+    </ul>
+{% endblock %}
+
+{% block facebook_tags %}
+<meta property="og:url" content="https://{{settings.FQDN}}/soluciones-abiertas/herramientas/{{post.slug}}/" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="{{post.title}}" />
+<meta property="og:description" content="{{post.description}}" />
+<meta property="og:image" content="{{post.get_image}}" />
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="post tool">
+                <div class="share-buttons hidden-xs hidden-sm">
+                    <p>Compartir</p>
+                    <div class="fb-share">
+                        <div fb-share="post.name">
+                            <div class="fb-share-button fb_iframe_widget">
+                                <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2F{{settings.FQDN}}/soluciones-abiertas/{{post.slug}}/&layout=button_count&size=small&mobile_iframe=true&appId=&width=88&height=20&locale=es_LA" width="88" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tw-share">
+                        <div tweet="post.name">
+                            <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button"
+                                title="Twitter Tweet Button" src="https://platform.twitter.com/widgets/tweet_button.83d5793f6ebbe2046330abda6016ae93.en.html#dnt=false&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=https%3A%2F%2F{{settings.FQDN}}/{{post.slug}}/&amp;size=m&amp;text={{post.title}}&amp;time=1517513176706&amp;type=share&amp;url=https%3A%2F%2F{{settings.FQDN}}/soluciones-abiertas/{{post.slug}}/&amp;via=DatosGobMx"
+                                style="position: static; visibility: visible; width: 61px; height: 20px;" data-url="https://{{settings.FQDN}}/soluciones-abiertas/{{post.slug}}/"></iframe>
+                        </div>
+                    </div>
+                </div>
+                <div class="row hidden-md hidden-lg">
+                    <div class="col-xs-12 col-sm-12">
+                        <div class="tool-slider">
+                            <div id="tool-gallery-mobile" data-ride="carousel" class="carousel slide">
+                                <div role="listbox" class="carousel-inner">
+                                    <div class="item active">
+                                        <img src="https://datos.gob.mx/public/img/uploads/5a3801925f14526e00dcdd64/f6GxgdxBGHm13LbR.png">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-xs-12 col-sm-12 tool-info">
+                        <h1 class="title">{{post.title}}</h1>
+                        <p class="author">
+                            <span>{{post.created|date:"d b, Y"}} |</span>Coordinación de Estrategia Digital Nacional (CEDN)</p>
+                        <a class="tag">
+                            <span class="tag-icon"></span>
+                            <span class="link">{{post.category.name}}</span>
+                        </a>
+                        <p class="description-post">
+                            {{post.description|truncatechars:300}}
+                        </p>
+                        <div class="link-buttons" style="text-align: center;">
+                            <a href="{{post.link_external_tool}}" target="_blank" class="tool-link google-link">Web de la Solución Abierta</a>
+                        </div>
+                    </div>
+                    <div class="col-md-7 col-md-offset-1 hidden-xs hidden-sm">
+                        <div class="tool-slider">
+                            <div id="tool-gallery" class="carousel slide">
+                                <div role="listbox" class="carousel-inner">
+                                    <div class="item active">
+                                        <img alt="{{post.title}}" src="{{post.get_image}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="content">
+                            {{post.text|clean_extra_style|safe}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

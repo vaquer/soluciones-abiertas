@@ -1,0 +1,126 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- webcomponents y polymer -->
+    <script src="https://cdn.datos.gob.mx/bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link href="https://cdn.datos.gob.mx/bower_components/polymer/polymer.html" rel="import">
+    <!-- navbar y footer de DGM -->
+    <link href="https://cdn.datos.gob.mx/bower_components/dgm-navbar/dgm-navbar.html" rel="import">
+    <link href="https://cdn.datos.gob.mx/bower_components/dgm-footer/dgm-footer.html" rel="import">
+    <!-- CSS -->
+    <link href="https://cdn.datos.gob.mx/assets/img/favicon.ico" rel="shortcut icon">
+    <link href="https://cdn.datos.gob.mx/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://pagination.js.org/dist/2.1.2/pagination.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Respond.js soporte de media queries para Internet Explorer 8 -->
+    <!-- ie8.js EventTarget para cada nodo en Internet Explorer 8 -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ie8/0.2.2/ie8.js"></script>
+    <![endif]-->
+
+    {% block facebook_tags %}{% endblock %}
+
+    <style>
+        .landing-header {
+            padding-top: 30px;
+            padding-bottom: 60px;
+            text-align: center;
+            color: rgba(255,255,255,0.9);
+            position: relative;
+            margin-bottom: 0;
+        }
+        .landing-header img {
+            width: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            min-height: 100%;
+        }
+        .row-totales {
+            margin-top: 70px;
+        }
+        .beta {
+            color: white;
+            font-size: 14px;
+            background-color: #6b6b6b;
+            font-weight: bold;
+            padding: 5px;
+        }
+        .header-tableros {
+            margin-top: 50px;
+        }
+        .layer {
+            position: relative;
+            background-color: rgba(21, 21, 21, 0.7);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .table-header {color: #0c9;}
+        .text-center { text-align: center !important; }
+        .dataTable tr th { color: #0c9; text-transform: uppercase; }
+        .datos-institucion { width: 100px; font-weight: 600; color: #6f6c6c; }
+        .datosTitle a { width: 345px; }
+        .span-no-bold { font-weight: 400 !important; font-size: 14px !important; }
+        #downloadsTotal, #resourcesTotal, #dependencesTotal { font-size: 36px; }
+        .data-table tr th { text-align: right; }
+    </style>
+</head>
+
+<body class="front">
+  <!-- Load Facebook SDK for JavaScript -->
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/es_LA/sdk.js#xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+    <!-- Contenido -->
+    <main>
+        <dgm-navbar></dgm-navbar>
+        <div id="container">
+            <div class="breadcrumb-container ng-scope">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-7 col-xs-12 col-sm-12">
+                            <breadcrumb>
+                                {% block breadcrumbs %}
+                                <ul class="breadcrumb">
+                                    <li>
+                                        <a ui-sref="landing" href="https://datos.gob.mx/">
+                                            <i class="glyphicon glyphicon-home"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/soluciones-abiertas/">Catálogo Comunitario</a>
+                                    </li>
+                                </ul>
+                                {% endblock %}
+                            </breadcrumb>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% block content %}
+            {% endblock %}
+        </div>
+        <dgm-footer></dgm-footer>
+    </main>
+    <!-- JS -->
+    {% comment %} <script src="https://cdn.datos.gob.mx/assets/js/main.js"></script> {% endcomment %}
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    {% block js_scripts %}{% endblock %}
+</body>
+</html>

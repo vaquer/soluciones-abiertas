@@ -1,0 +1,57 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revison: "1"
+  labels:
+    app: soluciones
+    run: soluciones
+  name: soluciones
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: soluciones
+  template:
+    metadata:
+      labels:
+        app: soluciones
+    spec:
+      containers:
+      - image: gcr.io/cms-presidencia-194718/soluciones:v0.9
+        name: soluciones
+        ports:
+          - containerPort: 8000
+            protocol: TCP
+        env:
+        - name: DATABASE_NAME
+          value: catalogo
+        - name: DATABASE_USER
+          value: catalogo
+        - name: DATABASE_PASSWORD
+          value: catalogo
+        - name: DATABASE_HOST
+          value: "10.63.244.152"
+        - name: DATABASE_PORT
+          value: "5432"
+        - name: DEBUG
+          value: "True"
+        - name: SECRET_KEY
+          value: ""
+        - name: ALLOWED_HOSTS
+          value: "10.0.0.2"
+        - name: AWS_ACCESS_KEY_ID
+          value: ""
+        - name: AWS_SECRET_ACCESS_KEY
+          value: ""
+        - name: AWS_STORAGE_BUCKET_NAME
+          value: "cms-presidencia"
+        - name: API_PAGE_SIZE
+          value: "50"
+        - name: INTERNAL_IPS
+          value: '0.0.0.0'
+        - name: RUN_MIGRATIONS
+          value: True
+        - name: COLLECT_STATIC
+          value: True

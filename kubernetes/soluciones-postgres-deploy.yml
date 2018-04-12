@@ -1,0 +1,47 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+  labels:
+    app: soluciones-postgres
+    run: soluciones-postgres
+  name: soluciones-postgres
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: soluciones-postgres
+  template:
+    metadata:
+      labels:
+        app: soluciones-postgres
+    spec:
+      containers:
+      - image: postgres
+        name: soluciones-postgres
+        resources:
+          limits:
+            cpu: "4"
+          requests:
+            cpu: "4"
+        ports:
+        - containerPort: 5432
+          protocol: TCP
+        volumeMounts:
+        - name: soluciones-disco-pg
+          mountPath: /var/lib/postgresql/data
+        env:
+        - name: POSTGRES_DB
+          value: catalogo
+        - name: POSTGRES_USER
+          value: catalogo
+        - name: POSTGRES_PASSWORD
+          value: catalogo
+        - name: PGDATA
+          value: /var/lib/postgresql/data/pgdata
+      volumes:
+      - name: soluciones-disco-pg
+        persistentVolumeClaim:
+          claimName: soluciones-disco-claim

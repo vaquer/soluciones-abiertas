@@ -1,0 +1,14 @@
+beautifulsoup4==4.6.0
+psycopg2==2.7.3.2
+uWSGI==2.0.15
+Django==2.0.1
+python-slugify==1.2.4
+django-filter==1.1.0
+djangorestframework==3.7.7
+django-debug-toolbar==1.9.1
+#django-jet==1.0.7
+-e git+https://github.com/vaquer/django-jet@dev#egg=django-jet
+django-storages==1.6.5
+boto3==1.5.26
+selenium==3.4.3
+Pillow==5.0.0
