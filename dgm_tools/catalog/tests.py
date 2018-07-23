@@ -168,7 +168,7 @@ class AdminTestCase(TestCase):
             element = WebDriverWait(driver, time).until(
                 EC.presence_of_element_located(until)
             )
-        except:
+        except Exception:
             # driver.close()
             return False
 

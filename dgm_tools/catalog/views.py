@@ -73,7 +73,7 @@ def catalog_tool(request, slug=None):
             'created',
             'link_external_tool'
         ).prefetch_related('category').get(slug=slug, public=True)
-    except:
+    except Exception:
         raise Http404
 
     return render(request, 'post.html', {'post': post, 'settings': settings})

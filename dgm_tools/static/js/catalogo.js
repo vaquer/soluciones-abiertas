@@ -1,12 +1,12 @@
 $(document).ready(function(){
     $(document).keypress(
-        function(event){
-         if (event.which === '13') {
-            event.preventDefault();
+        function(eventHandler){
+         if (eventHandler.which === "13") {
+            eventHandler.preventDefault();
           }
     });
 
-    var $pagination = $('.pagination');
+    var $pagination = $(".pagination");
     var prevPagination = $pagination.html();
     var post_list = [];
     var page_results = [];
@@ -52,9 +52,9 @@ $(document).ready(function(){
         $('.server-posts').hide();
 
         var filtros = "";
-        var dificultad_herramienta = $('#dificultad-herramienta').val();
-        var tipo_herramienta = $('#tipo-herramienta').val();
-        var titulo_herramienta = $('#titulo-herramienta').val();
+        var dificultad_herramienta = $("#dificultad-herramienta").val();
+        var tipo_herramienta = $("#tipo-herramienta").val();
+        var titulo_herramienta = $("#titulo-herramienta").val();
         var PAGE_SIZE = 10;
 
         if(titulo_herramienta.trim()){
@@ -78,15 +78,15 @@ $(document).ready(function(){
         }
 
         if(!filtros){
-            $('.pagination-server').show();
-            $('.pagination').hide();
-            $('.api-posts').hide();
-            $('.server-posts').show();
+            $(".pagination-server").show();
+            $(".pagination").hide();
+            $(".api-posts").hide();
+            $(".server-posts").show();
             return false;
         }
 
-        $.get('/soluciones-abiertas/api/posts/?' + filtros).done(function(response){
-            $('.api-posts').html('');
+        $.get("/soluciones-abiertas/api/posts/?" + filtros).done(function(response){
+            $(".api-posts").html('');
             post_list = response.results;
             page_results = response.results;
 
@@ -98,18 +98,18 @@ $(document).ready(function(){
             }
 
             for(var x=0; x < page_results.length; x++){
-                if(x % 2 == 0 && x > 0){
-                    $('.api-posts').append('<div class="clearfix"></div>');
+                if(x % 2 === 0 && x > 0){
+                    $(".api-posts").append("<div class='clearfix'></div>");
                 }
                 var rendered = Mustache.render(template_post, page_results[x]);
-                $('.api-posts').append(rendered);
+                $(".api-posts").append(rendered);
             }
 
-            $('.pagination-server').hide();
+            $(".pagination-server").hide();
             $pagination.html('');
 
             if($pagination.twbsPagination){
-                $pagination.twbsPagination('destroy');
+                $pagination.twbsPagination("destroy");
             }
 
             $pagination.twbsPagination({
@@ -120,31 +120,31 @@ $(document).ready(function(){
                 prev: '<span aria-hidden="true">‹</span>',
                 next: '<span aria-hidden="true">›</span>',
                 onPageClick: function (evt, page) {
-                    $('.api-posts').html('');
+                    $(".api-posts").html('');
                     var page_list = paginate(post_list, PAGE_SIZE, page);
 
                     for(var x=0; x < page_list.length; x++){
-                        if(x % 2 == 0 && x > 0){
-                            $('.api-posts').append('<div class="clearfix"></div>');
+                        if(x % 2 === 0 && x > 0){
+                            $(".api-posts").append("<div class='clearfix'></div>");
                         }
                         var rendered = Mustache.render(template_post, page_list[x]);
-                        $('.api-posts').append(rendered);
+                        $(".api-posts").append(rendered);
                     }
                 }
             });
             $pagination.show();
-            $('.api-posts').show();
+            $(".api-posts").show();
         }).fail(function(response){
             console.log(response);
             $pagination.hide();
-            $('.pagination-server').show();
-            $('.server-posts').show();
-            $('.api-posts').hide();
+            $(".pagination-server").show();
+            $(".server-posts").show();
+            $(".api-posts").hide();
         });
     }
 
-    $('#titulo-herramienta').keypress(function(event){
-        if(event.which === 13){
+    $("#titulo-herramienta").keypress(function(eventHandler){
+        if(eventHandler.which === 13){
             callAPIPosts();
             return false;
         }
