@@ -4,7 +4,10 @@
 {% block title %}Datos Abiertos de México - Catalogo Comunitario de Soluciones Abiertas{% endblock %}
 
 {% block js_scripts %}
-    <script src="{% static 'js/jquery.twbsPagination.min.js' %}"></script>
+    {% comment %}
+        <script src="{% static 'js/jquery.twbsPagination.min.js' %}"></script>
+    {% endcomment %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.1/jquery.twbsPagination.min.js"></script>
     <script src="{% static 'js/mustache.min.js' %}"></script>
     <script src="{% static 'js/catalogo.js' %}"></script>
     {% comment %}
