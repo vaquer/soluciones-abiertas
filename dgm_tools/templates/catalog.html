@@ -129,21 +129,21 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <form class="search-form posts form-inline">
-                            <input type="text" name="keyword" id="titulo-herramienta" placeholder="Ej. API de Datos"
+                        <form class="search-form posts form-inline" action="/soluciones-abiertas/search/" method="GET">
+                            <input type="text" name="title" id="titulo-herramienta" placeholder="Ej. API de Datos"
                                 class="form-control input-optimize">
                             </input>
-                            <button type="button" class="btn btn-primary search-button search-optimize">
+                            <button type="submit" class="btn btn-primary search-optimize">
                                 <div class="glyphicon glyphicon-search"></div>
                             </button>
-                            <select name="tag" id="tipo-herramienta" class="form-control hidden-xs hidden-sm" style="max-width: 240px;">
+                            <select name="tipo" id="tipo-herramienta" class="form-control hidden-xs hidden-sm" style="max-width: 240px;">
                                 <option value="" class="" selected="selected">Tipos</option>
 
                                 {% for category in categories %}
                                     <option label="{{category.name}}" value="{{category.id}}">{{category.name}}</option>
                                 {% endfor %}
                             </select>
-                            <select name="tag" id="dificultad-herramienta" class="form-control hidden-xs hidden-sm">
+                            <select name="dificultad" id="dificultad-herramienta" class="form-control hidden-xs hidden-sm">
                                 <option value="" class="" selected="selected">Nivel</option>
                                 <option label="Principiante" value="1">Principiante</option>
                                 <option label="Intermedio" value="2">Intermedio</option>
