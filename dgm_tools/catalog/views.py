@@ -111,7 +111,8 @@ def catalog_filter(request, page=1):
         'end': end,
         'tipo': int(request.GET.get('tipo', '0') or '0'),
         'dificultad': int(request.GET.get('dificultad', '0') or '0'),
-        'title': request.GET.get('title', '')
+        'title': request.GET.get('title', ''),
+        'is_filter': True
     }
 
     return render(request, 'catalog.html', context)
