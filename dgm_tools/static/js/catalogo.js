@@ -1,10 +1,10 @@
 $(document).ready(function(){
-    $(document).keypress(
-        function(eventHandler){
-         if (eventHandler.which === "13") {
-            eventHandler.preventDefault();
-          }
-    });
+    // $(document).keypress(
+    //     function(eventHandler){
+    //      if (eventHandler.which === "13") {
+    //         eventHandler.preventDefault();
+    //       }
+    // });
 
     var $pagination = $(".pagination");
     var prevPagination = $pagination.html();

@@ -66,16 +66,19 @@ def catalog_filter(request, page=1):
     from django.db.models import Q
 
     title = request.GET.get('title', '').strip()
-    tag = request.GET.get('tipo', '')
+    category = request.GET.get('tipo', '')
     level = request.GET.get('dificultad', '')
 
-    if not title:
+    if not title and not category and not level:
         return redirect('/soluciones-abiertas/')
 
-    q_list = [Q(public=True), Q(title__unaccent__icontains=title)]
+    q_list = [Q(public=True)]
 
-    if tag:
-        q_list.append(Q(tag=tag))
+    if title:
+        q_list.append(Q(title__unaccent__icontains=title))
+
+    if category:
+        q_list.append(Q(category__id=category))
 
     if level:
         q_list.append(Q(level=level))
@@ -105,7 +108,10 @@ def catalog_filter(request, page=1):
         'categories': categories,
         'p_range': p_range,
         'init': init,
-        'end': end
+        'end': end,
+        'tipo': int(request.GET.get('tipo', '0') or '0'),
+        'dificultad': int(request.GET.get('dificultad', '0') or '0'),
+        'title': request.GET.get('title', '')
     }
 
     return render(request, 'catalog.html', context)

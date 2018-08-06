@@ -131,23 +131,27 @@
                     <div class="col-md-12">
                         <form class="search-form posts form-inline" action="/soluciones-abiertas/search/" method="GET">
                             <input type="text" name="title" id="titulo-herramienta" placeholder="Ej. API de Datos"
-                                class="form-control input-optimize">
+                                class="form-control input-optimize" value="{{title}}">
                             </input>
                             <button type="submit" class="btn btn-primary search-optimize">
                                 <div class="glyphicon glyphicon-search"></div>
                             </button>
                             <select name="tipo" id="tipo-herramienta" class="form-control hidden-xs hidden-sm" style="max-width: 240px;">
-                                <option value="" class="" selected="selected">Tipos</option>
-
+                                <option value="" class="" {% if not tipo %}selected="selected"{% endif %}>Tipos</option>
                                 {% for category in categories %}
-                                    <option label="{{category.name}}" value="{{category.id}}">{{category.name}}</option>
+                                    {% if category.id == tipo %}
+                                        <option label="{{category.name}}" value="{{category.id}}" selected="selected">{{category.name}}</option>
+                                    {% else %}
+                                        <option label="{{category.name}}" value="{{category.id}}">{{category.name}}</option>
+                                    {% endif %}
                                 {% endfor %}
                             </select>
                             <select name="dificultad" id="dificultad-herramienta" class="form-control hidden-xs hidden-sm">
-                                <option value="" class="" selected="selected">Nivel</option>
-                                <option label="Principiante" value="1">Principiante</option>
-                                <option label="Intermedio" value="2">Intermedio</option>
-                                <option label="Avanzado" value="3">Avanzado</option>
+                                <option value="" class="" {% if not dificultad %}selected="selected"{% endif %}>Nivel</option>
+
+                                <option label="Principiante" value="1" {% if dificultad  == "1" %}selected="selected"{% endif %}>Principiante</option>
+                                <option label="Intermedio" value="2" {% if dificultad == "2"%}selected="selected"{% endif %}>Intermedio</option>
+                                <option label="Avanzado" value="3" {% if dificultad == "3" %}selected="selected"{% endif %}>Avanzado</option>
                             </select>
                         </form>
                     </div>
