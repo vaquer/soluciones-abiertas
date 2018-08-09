@@ -1,10 +1,10 @@
 $(document).ready(function(){
-    // $(document).keypress(
-    //     function(eventHandler){
-    //      if (eventHandler.which === "13") {
-    //         eventHandler.preventDefault();
-    //       }
-    // });
+    $(document).keypress(
+        function(eventHandler){
+         if (eventHandler.which === "13") {
+            eventHandler.preventDefault();
+          }
+    });
 
     var $pagination = $(".pagination");
     var prevPagination = $pagination.html();
@@ -145,14 +145,14 @@ $(document).ready(function(){
 
     $("#titulo-herramienta").keypress(function(eventHandler){
         if(eventHandler.which === 13){
-            callAPIPosts();
+            // callAPIPosts();
             return false;
         }
     });
 
 
     $('.search-button').click(function(event){
-        callAPIPosts();
+        // callAPIPosts();
         return false;
     });
 });
