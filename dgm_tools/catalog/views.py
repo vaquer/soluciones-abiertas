@@ -5,7 +5,7 @@ Vistas para usuarios de datos.gob.mx
 from django.http import Http404, HttpResponseRedirect
 from django.conf import settings
 from django.shortcuts import render, redirect
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage
 from .models import Post, Category
 
 
@@ -94,14 +94,17 @@ def catalog_filter(request, page=1):
     # Obteniendo variables de control publicas
     categories = Category.objects.filter(public=True).order_by('id')
 
-    # Paginacion
-    page_obj = pagination.page(page)
-    p_range = list(pagination.page_range)
+    try:
+        page_obj = pagination.page(page)
+        p_range = list(pagination.page_range)
 
-    # Paginacion
-    init = 0 if page <= 5 else page - 5
-    end = page_obj.end_index() if page > page_obj.end_index() - 5 else page + 5
-    p_range = p_range[init:end]
+        # Paginacion
+        init = 0 if page <= 5 else page - 5
+        end = page_obj.end_index() if page > page_obj.end_index() - 5 else page + 5
+        p_range = p_range[init:end]
+    except EmptyPage as not_found:
+        p_range = []
+        page_obj = None
 
     context = {
         'settings': settings,

@@ -196,7 +196,7 @@
 
                             <li class="pagination-first {% if not posts.has_previous %}disabled{% endif %}">
                                 {% if is_filter %}
-                                    <a href="/soluciones-abiertas/search/?title={{title}}=&tipo={{tipo}}&dificultad={{dificultad}}">«</a>
+                                    <a href="/soluciones-abiertas/search/?title={{title}}&tipo={{tipo}}&dificultad={{dificultad}}">«</a>
                                 {% else %}
                                     <a href="/soluciones-abiertas/">«</a>
                                 {% endif %}
@@ -204,7 +204,7 @@
 
                             <li class="pagination-prev {% if not posts.has_previous %}disabled{% endif %}">
                                 {% if is_filter %}
-                                    <a href="{% if posts.has_previous %}/soluciones-abiertas/search/p/{{posts.previous_page_number}}/?title={{title}}=&tipo={{tipo}}&dificultad={{dificultad}}{% endif %}">‹</a>
+                                    <a href="{% if posts.has_previous %}/soluciones-abiertas/search/p/{{posts.previous_page_number}}/?title={{title}}&tipo={{tipo}}&dificultad={{dificultad}}{% endif %}">‹</a>
                                 {% else %}
                                     <a href="{% if posts.has_previous %}/soluciones-abiertas/p/{{posts.previous_page_number}}/{% endif %}">‹</a>
                                 {% endif %}
@@ -213,7 +213,7 @@
                             {% for i in p_range %}
                                 <li class="pagination-page {% if posts.number == i %}active{% endif %}">
                                     {% if is_filter %}
-                                        <a href="/soluciones-abiertas/search/p/{{i}}/?title={{title}}=&tipo={{tipo}}&dificultad={{dificultad}}">{{i}}</a>
+                                        <a href="/soluciones-abiertas/search/p/{{i}}/?title={{title}}&tipo={{tipo}}&dificultad={{dificultad}}">{{i}}</a>
                                     {% else %}
                                         <a href="/soluciones-abiertas/p/{{i}}/">{{i}}</a>
                                     {% endif %}
@@ -222,7 +222,7 @@
 
                             <li class="pagination-next {% if not posts.has_next %}disabled{% endif %}">
                                 {% if is_filter %}
-                                    <a href="{% if posts.has_next %}/soluciones-abiertas/search/p/{{posts.next_page_number}}/?title={{title}}=&tipo={{tipo}}&dificultad={{dificultad}}{% endif %}">›</a>
+                                    <a href="{% if posts.has_next %}/soluciones-abiertas/search/p/{{posts.next_page_number}}/?title={{title}}&tipo={{tipo}}&dificultad={{dificultad}}{% endif %}">›</a>
                                 {% else %}
                                     <a href="{% if posts.has_next %}/soluciones-abiertas/p/{{posts.next_page_number}}/{% endif %}">›</a>
                                 {% endif %}
@@ -230,7 +230,7 @@
 
                             <li class="pagination-last {% if not posts.has_next %}disabled{% endif %}">
                                 {% if is_filter %}
-                                    <a href="{% if posts.has_next %}/soluciones-abiertas/search/p/{{posts.paginator.num_pages}}/?title={{title}}=&tipo={{tipo}}&dificultad={{dificultad}}{% endif %}">»</a>
+                                    <a href="{% if posts.has_next %}/soluciones-abiertas/search/p/{{posts.paginator.num_pages}}/?title={{title}}&tipo={{tipo}}&dificultad={{dificultad}}{% endif %}">»</a>
                                 {% else %}
                                     <a href="{% if posts.has_next %}/soluciones-abiertas/p/{{posts.paginator.num_pages}}/{% endif %}">»</a>
                                 {% endif %}
