@@ -14,6 +14,6 @@ urlpatterns = [
     path('', catalog_home, name="home"),
     path('p/<int:page>/', catalog_home, name="home_pagination"),
     path('search/', catalog_filter, name="search_filter"),
-    path('search/<int:page>/', catalog_filter, name="search_filter_pagination"),
+    path('search/p/<int:page>/', catalog_filter, name="search_filter_pagination"),
     path('herramientas/<slug:slug>/', catalog_tool, name='catalog_post'),
 ]

@@ -44,7 +44,8 @@ def catalog_home(request, page=1):
         'categories': categories,
         'p_range': p_range,
         'init': init,
-        'end': end
+        'end': end,
+        'is_filter': False
     }
 
     return render(request, 'catalog.html', context)
@@ -77,10 +78,10 @@ def catalog_filter(request, page=1):
     if title:
         q_list.append(Q(title__unaccent__icontains=title))
 
-    if category:
+    if category and category != '0':
         q_list.append(Q(category__id=category))
 
-    if level:
+    if level and level != '0':
         q_list.append(Q(level=level))
 
     # Obteniendo posts publicados
@@ -111,7 +112,7 @@ def catalog_filter(request, page=1):
         'end': end,
         'tipo': int(request.GET.get('tipo', '0') or '0'),
         'dificultad': int(request.GET.get('dificultad', '0') or '0'),
-        'title': request.GET.get('title', ''),
+        'title': request.GET.get('title', '').replace('=', ''),
         'is_filter': True
     }
 
