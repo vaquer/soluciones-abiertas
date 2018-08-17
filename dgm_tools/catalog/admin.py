@@ -55,7 +55,7 @@ class AdminPost(admin.ModelAdmin):
     class Media:
         js = (
             "https://cloud.tinymce.com/stable/tinymce.min.js",
-            '{}{}/js/init.tinymce.js?1234'.format(settings.STATIC_URL, settings.AWS_LOCATION)
+            '{}{}/js/init.tinymce.js?apiKey=plm9z5pdlanc2uw08py96u1bgwveoy7ywyhq483df7i4kdj6&1234'.format(settings.STATIC_URL, settings.AWS_LOCATION)
         )
         css = {
             "all": ('{}{}/css/admin.css'.format(settings.STATIC_URL, settings.AWS_LOCATION),)
