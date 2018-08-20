@@ -59,7 +59,10 @@
                             <div id="tool-gallery-mobile" data-ride="carousel" class="carousel slide">
                                 <div role="listbox" class="carousel-inner">
                                     <div class="item active">
+                                        {% comment %}
                                         <img src="https://datos.gob.mx/public/img/uploads/5a3801925f14526e00dcdd64/f6GxgdxBGHm13LbR.png">
+                                        {% endcomment %}
+                                        <img alt="{{post.title}}" src="{{post.get_image}}">
                                     </div>
                                 </div>
                             </div>
